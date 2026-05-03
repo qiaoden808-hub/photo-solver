@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>API Quick Test</title></head>
+<body style="font-family:sans-serif;padding:20px">
+<h2>Backend API Test</h2>
+<p>Pick an image and click Solve. This bypasses the Vue frontend entirely.</p>
+<input type="file" id="file" accept="image/*"><br><br>
+<button id="solve">Solve</button>
+<pre id="result" style="background:#f0f0f0;padding:12px;border-radius:8px;margin-top:12px"></pre>
+<script>
+document.getElementById('solve').onclick = async () => {
+  const file = document.getElementById('file').files[0]
+  if (!file) return alert('Pick an image first')
+  const r = document.getElementById('result')
+  r.textContent = 'Calling API...'
+  const reader = new FileReader()
+  reader.onload = async (e) => {
+    try {
+      const base64 = e.target.result.split('base64,')[1]
+      const resp = await fetch('http://localhost:8000/api/solve', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({image: base64, filename: file.name})
+      })
+      const data = await resp.json()
+      r.textContent = resp.ok ? JSON.stringify(data, null, 2) : `Error ${resp.status}: ${JSON.stringify(data)}`
+    } catch(err) {
+      r.textContent = 'Fetch error: ' + err.message
+    }
+  }
+  reader.readAsDataURL(file)
+}
+</script>
+</body>
+</html>
