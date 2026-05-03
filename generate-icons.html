@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Generate Icons</title></head>
+<body style="text-align:center;font-family:sans-serif;padding:40px">
+<h2>生成图标</h2>
+<p>点击下面两个按钮，把下载的文件放到 frontend/public/ 目录</p>
+<button onclick="gen(512,'icon-512.png')" style="font-size:20px;padding:16px 32px;margin:12px">下载 512x512</button><br>
+<button onclick="gen(192,'icon-192.png')" style="font-size:20px;padding:16px 32px;margin:12px">下载 192x192</button>
+<script>
+function gen(size, filename) {
+  const c = document.createElement('canvas')
+  c.width = c.height = size
+  const ctx = c.getContext('2d')
+  ctx.fillStyle = '#6C63FF'
+  ctx.beginPath(); ctx.roundRect(0,0,size,size,size*0.15); ctx.fill()
+  ctx.fillStyle = 'white'; ctx.font = size*0.55+'px sans-serif'
+  ctx.textAlign='center'; ctx.textBaseline='middle'
+  ctx.fillText('📚', size/2, size/2)
+  c.toBlob(b => {
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(b)
+    a.download = filename
+    a.click()
+  })
+}
+</script>
+</body></html>
