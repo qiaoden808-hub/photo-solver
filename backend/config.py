@@ -4,7 +4,11 @@ import threading
 
 from models import ApiConfig
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+# Vercel filesystem is read-only, use /tmp for data
+if os.environ.get("VERCEL"):
+    DATA_DIR = "/tmp/data"
+else:
+    DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 CONFIG_FILE = os.path.join(DATA_DIR, "config.json")
 
 _lock = threading.Lock()

@@ -4,7 +4,10 @@ import threading
 from datetime import datetime
 from typing import Optional
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+if os.environ.get("VERCEL"):
+    DATA_DIR = "/tmp/data"
+else:
+    DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(DATA_DIR, "history.json")
 
 _lock = threading.Lock()

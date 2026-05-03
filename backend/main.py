@@ -19,8 +19,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Ensure data directory exists
-os.makedirs(os.path.join(os.path.dirname(__file__), "data"), exist_ok=True)
+# Ensure data directory exists (Vercel uses /tmp)
+if os.environ.get("VERCEL"):
+    os.makedirs("/tmp/data", exist_ok=True)
+else:
+    os.makedirs(os.path.join(os.path.dirname(__file__), "data"), exist_ok=True)
 
 app = FastAPI(title="Photo Solver API", version="1.0.0")
 
