@@ -3,13 +3,16 @@
   "short_name": "Photo Solver",
   "description": "Take a photo of your homework problem and get step-by-step solutions",
   "id": "photo-solver-pwa",
-  "start_url": "/",
+  "start_url": "https://photo-solver-web.vercel.app/",
   "display": "standalone",
   "background_color": "#6C63FF",
   "theme_color": "#6C63FF",
   "orientation": "portrait",
   "lang": "en",
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "/icon.svg",
