@@ -1,18 +1,21 @@
 {
-  "name": "Photo Solver - Smart Homework Helper",
+  "name": "Photo Solver - AI Homework Helper",
   "short_name": "Photo Solver",
-  "description": "Take a photo of your homework and get step-by-step solutions",
+  "description": "Take a photo of your homework problem and get step-by-step solutions",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F8F9FE",
+  "background_color": "#6C63FF",
   "theme_color": "#6C63FF",
   "orientation": "portrait",
+  "lang": "en",
+  "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C63FF'/><text y='.7em' x='50%' text-anchor='middle' font-size='60'>📚</text></svg>",
+      "src": "/icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": []
 }
