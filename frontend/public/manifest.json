@@ -13,6 +13,14 @@
     "education",
     "productivity"
   ],
+  "screenshots": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "label": "Home screen"
+    }
+  ],
   "icons": [
     {
       "src": "/icon-192.png",
