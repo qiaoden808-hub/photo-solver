@@ -6,7 +6,6 @@ import ImagePreview from './components/ImagePreview.vue'
 import SolvingView from './components/SolvingView.vue'
 import SolutionView from './components/SolutionView.vue'
 import HistoryList from './components/HistoryList.vue'
-import SettingsPage from './components/SettingsPage.vue'
 import { useApi } from './composables/useApi.js'
 
 const API_BASE = 'http://localhost:8000'
@@ -33,10 +32,6 @@ function goToHome() {
 
 function goToHistory() {
   currentView.value = 'history'
-}
-
-function goToSettings() {
-  currentView.value = 'settings'
 }
 
 function onImageCaptured(imageUrl) {
@@ -88,9 +83,6 @@ function showViewFromHistory(solution) {
         <button class="header-btn" @click="goToHistory" title="History">
           📋
         </button>
-        <button class="header-btn" @click="goToSettings" title="Settings">
-          ⚙️
-        </button>
       </div>
     </header>
 
@@ -133,10 +125,6 @@ function showViewFromHistory(solution) {
         @view-solution="showViewFromHistory"
       />
 
-      <SettingsPage
-        v-else-if="currentView === 'settings'"
-        @go-back="goToHome"
-      />
     </main>
   </div>
 </template>

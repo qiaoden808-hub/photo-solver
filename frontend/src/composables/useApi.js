@@ -1,16 +1,7 @@
 import { ref } from 'vue'
 
-function getBaseUrl() {
-  return localStorage.getItem('backend_url') || 'http://localhost:8000'
-}
-
-export function setBackendUrl(url) {
-  localStorage.setItem('backend_url', url)
-}
-
-export function getBackendUrl() {
-  return localStorage.getItem('backend_url') || ''
-}
+// Change this to your Vercel backend URL when deploying
+const API_BASE = 'https://photo-solver.vercel.app'
 
 export function useApi() {
   const loading = ref(false)
@@ -20,8 +11,7 @@ export function useApi() {
     loading.value = true
     error.value = null
     try {
-      const base = getBaseUrl()
-      const response = await fetch(`${base}${endpoint}`, {
+      const response = await fetch(`${API_BASE}${endpoint}`, {
         headers: { 'Content-Type': 'application/json' },
         ...options,
       })
@@ -58,20 +48,8 @@ export function useApi() {
     return request(`/api/history/${id}`, { method: 'DELETE' })
   }
 
-  async function saveConfig(apiKey, endpoint, model) {
-    return request('/api/config', {
-      method: 'POST',
-      body: JSON.stringify({ api_key: apiKey, endpoint, model }),
-    })
-  }
-
-  async function getConfig() {
-    return request('/api/config')
-  }
-
   return {
     loading, error,
-    solveProblem, getHistory, getHistoryItem,
-    deleteHistory, saveConfig, getConfig,
+    solveProblem, getHistory, getHistoryItem, deleteHistory,
   }
 }
